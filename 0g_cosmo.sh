@@ -35,5 +35,10 @@ Environment="UNSAFE_SKIP_BACKUP=true"
 WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
-systemctl restart ogd
-journalctl -fu ogd
+
+sudo systemctl stop ogd
+cp $HOME/.0gchain/data/priv_validator_state.json $HOME/.0gchain/priv_validator_state.json.backup
+rm -rf $HOME/.0gchain/data 
+curl https://server-5.itrocket.net/testnet/og/og_2024-08-12_625716_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.0gchain
+mv $HOME/.0gchain/priv_validator_state.json.backup $HOME/.0gchain/data/priv_validator_state.json
+sudo systemctl restart ogd && sudo journalctl -u ogd -f
