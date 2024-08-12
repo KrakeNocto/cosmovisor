@@ -12,7 +12,7 @@ git fetch
 git checkout v0.3.0.alpha.2
 make install 
 mkdir -p /root/.0gchain/cosmovisor/upgrades/v0.3.0/bin
-cp /root/go/bin/0gchaind /home/ritual/.0gchain/cosmovisor/upgrades/v0.3.0/bin/0gchaind
+cp /root/go/bin/0gchaind /root/.0gchain/cosmovisor/upgrades/v0.3.0/bin/0gchaind
 
 sudo tee /etc/systemd/system/ogd.service > /dev/null << EOF
 [Unit]
